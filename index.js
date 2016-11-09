@@ -33,13 +33,6 @@ module.exports = function (dataCallback, config) {
     var userUrl = config.params.key + "/" + config.params.lat + "," + config.params.long;
     var timeout = config.interval * 1000;
 
-    return {
-        start: start,
-        stop: stop,
-        tick: tick,
-        clicked: clicked
-    };
-
     function start()
     {
         if (isRunning) return;
@@ -117,6 +110,15 @@ module.exports = function (dataCallback, config) {
             full_text: outputString
         });
     }
+
+
+
+    return {
+        start: start,
+        stop: stop,
+        tick: tick,
+        clicked: clicked
+    };
 };
 
 
