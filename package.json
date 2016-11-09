@@ -1,6 +1,6 @@
 {
   "name": "ty3bar-module-weather",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ty3bar Module to display weather information from Dark Sky",
   "main": "index.js",
   "author": "Kevin Gravier",

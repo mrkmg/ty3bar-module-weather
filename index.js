@@ -16,12 +16,9 @@ var iconLookup = {
     wind: "<span font_desc='WeatherIcons'></span>",
 };
 
-module.exports = function (dc, config) {
+module.exports = function (dataCallback, config) {
     var isRunning = false;
-    var intervalId, userUrl, timeout, dataCallback;
-
-    dataCallback = dc;
-    timeout = config.interval * 1000;
+    var intervalId;
 
     if (!config.params.key) {
         throw new Error("'key' must be defined");
@@ -33,7 +30,8 @@ module.exports = function (dc, config) {
         throw new Error("'long' must be defined");
     }
 
-    userUrl = config.params.key + "/" + config.params.lat + "," + config.params.long;
+    var userUrl = config.params.key + "/" + config.params.lat + "," + config.params.long;
+    var timeout = config.interval * 1000;
 
     return {
         start: start,
