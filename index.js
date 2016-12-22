@@ -71,6 +71,11 @@ module.exports = function (dataCallback, config) {
     {
         httpGet(baseUrl + userUrl + urlExcludes, function (response)
         {
+            if (response.statusCode !== 200) {
+                onError('HTTP ' + response.statusCode);
+                return;
+            }
+
             var data = "";
 
             response.on("data", function (d)
@@ -81,6 +86,8 @@ module.exports = function (dataCallback, config) {
             {
                 callback(data.toString());
             });
+        }).on('error', (e) => {
+            onError(e.message);
         });
     }
 
@@ -111,7 +118,14 @@ module.exports = function (dataCallback, config) {
         });
     }
 
-
+    function onError(error) {
+        stop();
+        dataCallback({
+            full_text: "Error: " + error,
+            color: '#FFFFFF',
+            background: '#FF0000'
+        });
+    }
 
     return {
         start: start,
